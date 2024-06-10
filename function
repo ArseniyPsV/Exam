@@ -1,0 +1,57 @@
+#include "Tests.h"
+
+int maxNumberFives(int marks[], int size) {
+
+	if (size < 7) {
+		return -1;
+	}
+
+	int maxFives = -1;
+	for (int i = 0; i < size - 7; i++) {
+
+		bool validMarks = true;
+		int countFives = 0;
+
+		for (int j = i; j < i + 7; j++) {
+
+			if (marks[j] == 2 || marks[j] == 3) {
+				validMarks = false;
+				break;
+			}
+
+			if (marks[j] == 5) {
+				countFives++;
+			}
+		}
+
+		if (validMarks) {
+			maxFives = countFives;
+		}
+	}
+
+	if (maxFives == -1) {
+		for (int i = 0; i <= size - 7; i++)
+		{
+			bool onlyFours = true;
+			for (int j = i; j < i + 7; j++)
+			{
+				if (marks[j] != 4) {
+					onlyFours = false;
+					break;
+				}
+			}
+			if (onlyFours)
+			{
+				return 0; 
+			}
+		}
+	}
+
+	return maxFives;
+}
+
+int main() {
+	testingExamTask();
+
+	return 0;
+}
